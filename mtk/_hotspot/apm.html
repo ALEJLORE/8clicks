@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hotspot Access Point Monitor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+        }
+        .ap-info {
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hotspot Access Point Monitor</h1>
+    
+    <div class="ap-info">
+        <h2>Access Point Status</h2>
+        <pre id="ap-status">
+            <!-- JavaScript will update this section -->
+        </pre>
+    </div>
+
+    <script>
+        function updateAccessPointStatus() {
+            // Fetch the Hotspot access point information stored in the global variable
+            var apStatus = <?php echo json_encode($hotspot_status); ?>;
+            
+            // Update the HTML element with the access point information
+            document.getElementById("ap-status").textContent = apStatus;
+        }
+
+        // Initial update
+        updateAccessPointStatus();
+
+        // Schedule periodic updates (e.g., every 5 minutes)
+        setInterval(updateAccessPointStatus, 300000); // 300000 milliseconds = 5 minutes
+    </script>
+</body>
+</html>
